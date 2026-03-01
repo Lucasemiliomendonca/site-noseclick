@@ -15,7 +15,7 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         
-        /* Animação suave de entrada */
+        /* Animação suave */
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
@@ -28,28 +28,28 @@
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         
-        /* Gradiente do Texto Principal */
+        /* O GRADIENTE DA MARCA (Azul Escuro -> Laranja) */
         .text-gradient {
-            background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #ea580c 100%); /* Blue-900 to Orange-600 */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden">
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
                     <img class="h-10 w-auto" src="logo.png" alt="NoseClick Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-                    <span class="text-2xl font-bold text-blue-600 hidden">NoseClick</span> </div>
+                    <span class="text-2xl font-bold text-blue-900 hidden">NoseClick</span> 
+                </div>
                 
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#como-funciona" class="text-slate-600 hover:text-blue-600 font-medium transition">Como Funciona</a>
-                    <a href="#ecossistema" class="text-slate-600 hover:text-blue-600 font-medium transition">Para Quem é</a>
-                    <a href="#seguranca" class="text-slate-600 hover:text-blue-600 font-medium transition">Segurança</a>
-                    <a href="#download" class="bg-black text-white px-6 py-2.5 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg shadow-blue-500/20">Baixar Agora</a>
+                    <a href="#como-funciona" class="text-slate-600 hover:text-orange-600 font-medium transition">Como Funciona</a>
+                    <a href="#ecossistema" class="text-slate-600 hover:text-orange-600 font-medium transition">Para Quem é</a>
+                    <a href="#download" class="bg-orange-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-orange-700 transition shadow-lg shadow-orange-500/20">Baixar Agora</a>
                 </div>
             </div>
         </div>
@@ -58,32 +58,32 @@
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             
-            <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-2 rounded-full mb-8 fade-in-up">
+            <div class="inline-flex items-center gap-2 bg-slate-100 border border-slate-200 px-4 py-2 rounded-full mb-8 fade-in-up">
                 <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
                 </span>
-                <span class="text-sm font-semibold text-blue-700 tracking-wide uppercase">Selecionado para Due Diligence | Shark Tank Brasil 🦈</span>
+                <span class="text-xs md:text-sm font-bold text-slate-700 tracking-wide uppercase">Selecionado para Due Diligence | Shark Tank Brasil 🦈</span>
             </div>
 
-            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 fade-in-up delay-100">
+            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 fade-in-up delay-100 text-slate-900">
                 O Focinho é a nova <br>
                 <span class="text-gradient">Identidade Digital.</span>
             </h1>
             
             <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 fade-in-up delay-200 leading-relaxed">
-                Esqueça as plaquinhas que caem e os microchips invasivos. A NoseClick usa Inteligência Artificial avançada para proteger quem você ama com um simples escaneamento.
+                Esqueça as plaquinhas que caem. A NoseClick usa IA para proteger quem você ama com um simples escaneamento.
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in-up delay-200" id="download">
-                <button class="flex items-center justify-center bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition shadow-xl transform hover:-translate-y-1">
+                <button class="flex items-center justify-center bg-orange-600 text-white px-8 py-4 rounded-xl hover:bg-orange-700 transition shadow-xl transform hover:-translate-y-1">
                     <i class="ph-fill ph-google-play-logo text-3xl mr-3"></i>
                     <div class="text-left">
-                        <div class="text-xs opacity-80">Disponível no</div>
+                        <div class="text-xs opacity-90">Disponível no</div>
                         <div class="text-lg font-bold leading-none">Google Play</div>
                     </div>
                 </button>
-                <button class="flex items-center justify-center bg-gray-200 text-gray-900 px-8 py-4 rounded-xl hover:bg-gray-300 transition transform hover:-translate-y-1">
+                <button class="flex items-center justify-center bg-slate-900 text-white px-8 py-4 rounded-xl hover:bg-slate-800 transition transform hover:-translate-y-1">
                     <i class="ph-fill ph-apple-logo text-3xl mr-3"></i>
                     <div class="text-left">
                         <div class="text-xs opacity-70">Em Breve na</div>
@@ -98,118 +98,111 @@
         </div>
     </section>
 
-    <section id="como-funciona" class="py-24 bg-white">
+    <section id="como-funciona" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-slate-900 mb-4">Tecnologia Complexa, Uso Simples.</h2>
-                <p class="text-slate-600 max-w-2xl mx-auto">Nossa IA analisa mais de 120 pontos únicos no padrão do focinho do seu cachorro.</p>
+                <p class="text-slate-600 max-w-2xl mx-auto">Nossa IA analisa mais de 120 pontos únicos no padrão do focinho.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-12">
-                <div class="relative p-8 bg-slate-50 rounded-3xl hover:shadow-lg transition border border-slate-100">
-                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                <div class="relative p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition border border-slate-100">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 text-2xl mb-6">
                         <i class="ph-bold ph-camera-plus"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">1. Cadastre</h3>
-                    <p class="text-slate-600">Aponte a câmera do app para o focinho. Em segundos, nossa IA cria o ID biométrico único do seu pet.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">1. Cadastre</h3>
+                    <p class="text-slate-600">Aponte a câmera. Em segundos, criamos o ID biométrico único do seu pet.</p>
                 </div>
 
-                <div class="relative p-8 bg-slate-50 rounded-3xl hover:shadow-lg transition border border-slate-100">
-                    <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-6">
+                <div class="relative p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition border border-slate-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-900 text-2xl mb-6">
                         <i class="ph-bold ph-shield-check"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">2. Proteja</h3>
-                    <p class="text-slate-600">Seu pet entra no Banco de Dados Nacional, integrado com prefeituras, ONGs e veterinários parceiros.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">2. Proteja</h3>
+                    <p class="text-slate-600">Seu pet entra no Banco de Dados Nacional, integrado com o governo.</p>
                 </div>
 
-                <div class="relative p-8 bg-slate-50 rounded-3xl hover:shadow-lg transition border border-slate-100">
+                <div class="relative p-8 bg-white rounded-3xl shadow-sm hover:shadow-md transition border border-slate-100">
                     <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-6">
                         <i class="ph-bold ph-magnifying-glass"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">3. Encontre</h3>
-                    <p class="text-slate-600">Se ele se perder, qualquer pessoa com o app pode escanear o focinho e notificar você instantaneamente com a localização.</p>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">3. Encontre</h3>
+                    <p class="text-slate-600">Qualquer pessoa pode escanear o focinho e te avisar a localização.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="ecossistema" class="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-blue-500/20 blur-[120px] rounded-full"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-orange-500/10 blur-[120px] rounded-full"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20">
-                <span class="text-blue-400 font-semibold tracking-wider uppercase text-sm">Um Ecossistema Completo</span>
+                <span class="text-orange-500 font-bold tracking-wider uppercase text-sm">Um Ecossistema Completo</span>
                 <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6">Conectando todos os pontos.</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">O NoseClick não é apenas um app para tutores. É uma plataforma de gestão de vida animal.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-sm">
-                    <i class="ph-duotone ph-heart text-4xl text-pink-500 mb-4"></i>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-orange-500/50 transition backdrop-blur-sm">
+                    <i class="ph-duotone ph-heart text-4xl text-orange-500 mb-4"></i>
                     <h4 class="text-xl font-bold mb-2">Para Tutores</h4>
-                    <p class="text-slate-400 text-sm">Recuperação de animais perdidos, histórico médico na palma da mão e alertas de vacina.</p>
+                    <p class="text-slate-400 text-sm">Recuperação de animais perdidos e histórico médico na palma da mão.</p>
                 </div>
 
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-sm">
-                    <i class="ph-duotone ph-buildings text-4xl text-blue-500 mb-4"></i>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-blue-500/50 transition backdrop-blur-sm">
+                    <i class="ph-duotone ph-buildings text-4xl text-blue-400 mb-4"></i>
                     <h4 class="text-xl font-bold mb-2">Para Governo</h4>
-                    <p class="text-slate-400 text-sm">Censo animal em tempo real, controle de zoonoses e gestão de agentes de campo.</p>
+                    <p class="text-slate-400 text-sm">Censo animal em tempo real e gestão de agentes de campo.</p>
                 </div>
 
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-sm">
-                    <i class="ph-duotone ph-first-aid text-4xl text-green-500 mb-4"></i>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-green-500/50 transition backdrop-blur-sm">
+                    <i class="ph-duotone ph-first-aid text-4xl text-green-400 mb-4"></i>
                     <h4 class="text-xl font-bold mb-2">Para Veterinários</h4>
-                    <p class="text-slate-400 text-sm">Prontuário digital imutável, validação de vacinas e fidelização de clientes.</p>
+                    <p class="text-slate-400 text-sm">Prontuário digital imutável e validação de vacinas.</p>
                 </div>
 
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-sm">
-                    <i class="ph-duotone ph-shield-star text-4xl text-yellow-500 mb-4"></i>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition backdrop-blur-sm">
+                    <i class="ph-duotone ph-shield-star text-4xl text-purple-400 mb-4"></i>
                     <h4 class="text-xl font-bold mb-2">Para Seguradoras</h4>
-                    <p class="text-slate-400 text-sm">Prevenção de fraudes na identificação do pet e rede credenciada inteligente.</p>
+                    <p class="text-slate-400 text-sm">Prevenção de fraudes e rede credenciada inteligente.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white pt-20 pb-10 border-t border-slate-200">
+    <footer class="bg-slate-900 text-white pt-20 pb-10 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-12 mb-16">
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-2 mb-6">
-                        <img src="logo.png" alt="Logo" class="h-8 w-auto grayscale opacity-80">
-                        <span class="text-xl font-bold text-slate-800">NoseClick</span>
+                        <img src="logo.png" alt="Logo" class="h-8 w-auto brightness-0 invert opacity-80">
+                        <span class="text-xl font-bold">NoseClick</span>
                     </div>
-                    <p class="text-slate-500 mb-6 max-w-sm">
+                    <p class="text-slate-400 mb-6 max-w-sm">
                         Revolucionando a identificação animal com Inteligência Artificial e Biometria de alta precisão.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-100 hover:text-blue-600 transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-blue-100 hover:text-blue-600 transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
-                    </div>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-slate-900 mb-4">Produto</h5>
-                    <ul class="space-y-3 text-slate-500">
-                        <li><a href="#" class="hover:text-blue-600 transition">Baixar App</a></li>
-                        <li><a href="#" class="hover:text-blue-600 transition">Para Prefeituras</a></li>
-                        <li><a href="#" class="hover:text-blue-600 transition">Para ONGs</a></li>
+                    <h5 class="font-bold text-white mb-4">Produto</h5>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="#" class="hover:text-orange-500 transition">Baixar App</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Para Prefeituras</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h5 class="font-bold text-slate-900 mb-4">Legal</h5>
-                    <ul class="space-y-3 text-slate-500">
-                        <li><a href="#" class="hover:text-blue-600 transition">Termos de Uso</a></li>
-                        <li><a href="#" class="hover:text-blue-600 transition">Privacidade</a></li>
-                        <li><a href="#" class="hover:text-blue-600 transition">Compliance</a></li>
+                    <h5 class="font-bold text-white mb-4">Legal</h5>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="#" class="hover:text-orange-500 transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Termos</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-400 text-sm">© 2026 NoseClick Tecnologia Ltda. Todos os direitos reservados.</p>
-                <p class="text-slate-400 text-xs">CNPJ: 56.***.***/0001-** | São Paulo - SP</p>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">© 2026 NoseClick Tecnologia Ltda.</p>
+                <p class="text-slate-500 text-xs">CNPJ: 56.***.***/0001-** | São Paulo - SP</p>
             </div>
         </div>
     </footer>
