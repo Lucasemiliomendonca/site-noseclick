@@ -488,26 +488,38 @@
                     <div
                         class="absolute right-0 top-0 w-64 h-full bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.05),transparent)] group-hover:translate-x-full transition-transform duration-1000">
                     </div>
-                    <div>
+                    <div class="relative z-10">
                         <div
                             class="w-14 h-14 bg-navy-800/80 rounded-2xl flex items-center justify-center border border-navy-600/50 mb-6 text-blue-400">
                             <i class="ph-fill ph-city text-3xl"></i>
                         </div>
-                        <h4 class="text-2xl lg:text-3xl font-bold text-white mb-4">Painel Governamental (Censo &
-                            Trânsito)</h4>
+                        <h4 class="text-2xl lg:text-3xl font-bold text-white mb-4">Painel Governamental de Gestão de
+                            Zoonoses</h4>
                         <p class="text-navy-100/70 text-base leading-relaxed max-w-xl">
-                            Um módulo poderoso desenhado para secretarias do meio ambiente e saúde. Envie notificações
-                            em massa divididas por bairros para campanhas de saúde pública.
+                            Desenvolvido especialmente para secretarias municipais e estaduais de saúde e meio ambiente.
+                            Nosso painel converte microdados dispersos em mapas de calor epidemiológicos (PostGIS) em
+                            tempo real, permitindo aos gestores otimizar campanhas de vacinação e controle populacional
+                            bairro a bairro.
                         </p>
-                        <p class="text-navy-100/70 text-base leading-relaxed mt-4 max-w-xl">
-                            Seus <strong>Agentes de Rua</strong> ganham acesso corporativo para ler coleiras e
-                            identificar pets imediatamente, registrando mortes em vias ou realizando apreensões oficiais
-                            que ficam conectadas ao CPF do tutor.
-                        </p>
+                        <ul class="space-y-3 mt-6">
+                            <li class="flex items-start text-sm text-navy-200"><i
+                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i>
+                                <strong>Agentes em Campo:</strong> Aplicativo corporativo restrito para leitura
+                                instantânea de Smart Tags, permitindo consultar dados vacinais do pet na rua.</li>
+                            <li class="flex items-start text-sm text-navy-200"><i
+                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i>
+                                <strong>Apreensões e Óbitos:</strong> Registro legal de recolhimento de animais
+                                vinculados diretamente ao CPF do tutor, gerando responsabilidade civil contra abandonos.
+                            </li>
+                            <li class="flex items-start text-sm text-navy-200"><i
+                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i> <strong>Censo
+                                    Digital:</strong> Substitua cadastros manuais lentos por um Big Data demográfico
+                                animal confiável.</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- CARD ONGs (Quadrado Menor) -->
+                <!-- CARD ONGs (Quadrado Menor Ampliado) -->
                 <div
                     class="md:col-span-4 bg-navy-900 rounded-3xl p-8 border border-navy-700 hover-lift flex flex-col justify-between">
                     <div>
@@ -517,62 +529,65 @@
                                 <i class="ph-duotone ph-heart-hands text-2xl"></i>
                             </div>
                             <span
-                                class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20 uppercase">Adoção</span>
+                                class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20 uppercase">Ecossistema
+                                Social</span>
                         </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Gestão de ONGs</h4>
-                        <p class="text-navy-100/70 text-sm leading-relaxed">
-                            Controle a entrada, castração e preparação médica do animal abrigado. Quando pronto, nosso
-                            sistema origina um token inteligente para oficializar a tutela ao doador.
+                        <h4 class="text-xl font-bold text-white mb-3">Gateway para Abrigos e ONGs</h4>
+                        <p class="text-navy-100/70 text-sm leading-relaxed mb-4">
+                            Dê adeus às planilhas de Excel. Nossa plataforma acompanha toda a jornada do animal
+                            resgatado: desde a entrada no abrigo, agendamento de castrações, até vermifugações e
+                            vacinais documentados no Prontuário Imutável.
+                        </p>
+                        <p class="text-navy-100/70 text-sm leading-relaxed border-t border-navy-800 pt-4">
+                            <strong>Adoção Blindada:</strong> Assim que um pet está pronto para ganhar um lar,
+                            formalizamos a adoção gerando uma chave digital criptografada. Transferimos o histórico
+                            médico na íntegra e atrelamos legalmente a custódia ao adotante.
                         </p>
                     </div>
                 </div>
 
-                <!-- CARD SEGURADORAS (Quadrado Menor) -->
+                <!-- CARD SEGURADORAS (Largo Expandido) -->
                 <div
-                    class="md:col-span-5 bg-navy-900 rounded-3xl p-8 border border-navy-700 hover-lift flex flex-col justify-between">
+                    class="md:col-span-12 bg-navy-900 rounded-3xl p-8 lg:p-10 border border-navy-700 hover-lift flex flex-col justify-between">
                     <div>
                         <div
                             class="w-12 h-12 bg-purple-900/40 rounded-xl flex items-center justify-center text-purple-400 border border-purple-700/50 mb-6">
                             <i class="ph-duotone ph-shield-star text-2xl"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Gateway para Planos de Saúde</h4>
-                        <p class="text-navy-100/70 text-sm leading-relaxed mb-4">
-                            Emita apólices e acabe com fraudes substituindo o registro do chip invasivo por uma
-                            identificação intransferível do focinho.
-                        </p>
-                        <ul class="space-y-2 mt-auto">
-                            <li class="flex items-center text-xs text-navy-200"><i
-                                    class="ph-fill ph-check-circle text-brand-500 mr-2"></i>Gestão de Rede Credenciada
-                            </li>
-                            <li class="flex items-center text-xs text-navy-200"><i
-                                    class="ph-fill ph-check-circle text-brand-500 mr-2"></i>Atribuição de Status da
-                                Apólice</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- CARD CIENTIFICO (Largo) -->
-                <div
-                    class="md:col-span-7 bg-dark-900 rounded-3xl p-8 lg:p-10 border border-brand-500/20 shadow-[inset_0_0_80px_rgba(234,88,12,0.05)] hover-lift flex flex-col justify-between overflow-hidden">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="flex h-3 w-3 relative">
-                                <span
-                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
-                            </span>
-                            <span class="text-brand-500 font-bold uppercase tracking-widest text-xs">Infraestrutura
-                                Computacional</span>
+                        <div class="md:flex md:gap-12">
+                            <div class="md:w-1/2">
+                                <h4 class="text-2xl font-bold text-white mb-4">Soluções para Planos de Saúde Pet</h4>
+                                <p class="text-navy-100/70 text-base leading-relaxed mb-6">
+                                    O mercado de seguros pet no Brasil cresce exponencialmente, mas sofre com fraudes
+                                    pela dificuldade de identificar, com precisão inviolável, qual pet está recebendo o
+                                    procedimento. Nossa solução elimina a dependência de microchips invasivos ou
+                                    tatuagens em prol de um sistema rápido pelo smartphone.
+                                </p>
+                            </div>
+                            <div class="md:w-1/2">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start text-sm text-navy-200">
+                                        <i class="ph-fill ph-shield-check text-purple-400 mr-3 mt-0.5 text-lg"></i>
+                                        <div>
+                                            <strong class="text-white block">Selo Antifraude:</strong>
+                                            <span class="opacity-80">As clínicas cadastradas na sua rede atestam a
+                                                identidade biométrica exata do animal via sistema antes de solicitar
+                                                faturamentos e reembolsos médicos.</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start text-sm text-navy-200">
+                                        <i class="ph-fill ph-file-text text-purple-400 mr-3 mt-0.5 text-lg"></i>
+                                        <div>
+                                            <strong class="text-white block">Auditoria Inalterável
+                                                (Append-Only):</strong>
+                                            <span class="opacity-80">Todo o acionamento de plano de saúde é gravado em
+                                                um fluxo onde deleções são proibidas, garantindo conformidade nas
+                                                auditorias de sinistros de longo prazo.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <h4 class="text-2xl font-bold text-white mb-4">Biometria Vetorial Acelerada Mapeada por Pytorch
-                        </h4>
-                        <p class="text-navy-100/60 text-sm md:text-base leading-relaxed">
-                            Nós não salvamos fotos ou comparamos imagens no uso corporativo. O pipeline injeta a captura
-                            facial da câmera direto nos algoritmos de Deep Learning estrutural do servidor. Descartamos
-                            a foto e geramos um vetor puramente numérico (Embeddings) arquivado em Postgres Vectorial.
-                            Uma consulta biológica complexa vira matemática instantânea, tornando a API apta a suportar
-                            escala nacional global sem latência.
-                        </p>
                     </div>
                 </div>
 
