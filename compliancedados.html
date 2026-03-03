@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance de Dados | NoseClick</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'], },
+                    colors: {
+                        brand: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+                        navy: { 50: '#eff6ff', 100: '#dbeafe', 600: '#2563eb', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-navy-950 text-slate-300 antialiased selection:bg-brand-500 selection:text-white">
+
+    <nav class="bg-navy-900 border-b border-navy-800 py-4 fixed w-full z-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="ph-fill ph-paw-print text-2xl text-white group-hover:text-brand-500 transition-colors"></i>
+                <span class="text-xl font-extrabold text-white hidden sm:block">Nose<span
+                        class="text-brand-500">Click</span></span>
+            </a>
+            <a href="index.html"
+                class="text-sm font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-2">
+                <i class="ph-bold ph-arrow-left"></i> Voltar para o site
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
+        <div class="bg-navy-900 p-8 md:p-12 rounded-3xl shadow-2xl border border-navy-800 relative overflow-hidden">
+            <!-- Efeito Backglow -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl"></div>
+
+            <div class="mb-10 text-center relative z-10">
+                <div
+                    class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-500/10 text-brand-500 border border-brand-500/20 mb-6">
+                    <i class="ph-fill ph-lock-key text-3xl"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">Compliance & Segurança de
+                    Dados</h1>
+                <p class="text-navy-300">Estrutura Técnica e Conformidade Arquitetural da Plataforma</p>
+            </div>
+
+            <article class="prose prose-invert prose-brand max-w-none text-slate-300 space-y-6 relative z-10">
+                <p>Nossa fundação técnica é construída primando pela confidencialidade e integridade transacional dos
+                    seus dados. A <strong>NOSECLICK DESENVOLVIMENTO DE SOFTWARE I.S.</strong> opera uma arquitetura
+                    Serverless alocada na nuvem do Google e suportada por bancos de dados vectoriais do Supabase.</p>
+
+                <div class="grid sm:grid-cols-2 gap-6 mt-10 mb-8">
+                    <div class="bg-navy-950 p-6 rounded-2xl border border-navy-800">
+                        <i class="ph-duotone ph-cpu text-3xl text-blue-400 mb-4 block"></i>
+                        <h3 class="text-lg font-bold text-white mb-2 mt-0">Expurgo Fotográfico</h3>
+                        <p class="text-sm">A NoseClick não armazena fotos dos focinhos em bancos públicos relacionáveis
+                            ao seu CPF durante validações corporativas. A Imagem é enviada à AI, que extrai o
+                            <em>embedding</em> (vetor biológico irreversível). A foto pode ser descartada, operando
+                            apenas matemática a ponta a ponta.</p>
+                    </div>
+                    <div class="bg-navy-950 p-6 rounded-2xl border border-navy-800">
+                        <i class="ph-duotone ph-files text-3xl text-emerald-400 mb-4 block"></i>
+                        <h3 class="text-lg font-bold text-white mb-2 mt-0">Prontuário Imutável (Append-Only)</h3>
+                        <p class="text-sm">Desenvolvemos o histórico de saúde animal baseando-nos no conceito de
+                            <em>Append-Only</em>. Registros médicos, uma vez validados por um CRMV ativo, não podem ser
+                            apagados pelo Backend, mitigando falsificação de exames para seguradores.</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold text-white mt-10 mb-4">Autenticação e Criptografia Em-Trânsito</h2>
+                <p>Todos os dados de usuários que fluem da Aplicação Mobile (Flutter) para nossos endpoints (FastAPI)
+                    são protegidos via <strong>TLS 1.3</strong>. Nenhuma requisição transita descriptografada. A camada
+                    de identidade é gerida de ponta a ponta utilizando JWTs originados por provedores de identidade
+                    validados no setor corporativo (Firebase Auth / Supabase Auth).</p>
+
+                <h2 class="text-2xl font-bold text-white mt-10 mb-4">Servidor em Nuvem e Resiliência ISO 27001</h2>
+                <p>O core da nossa engine biométrica executa em instâncias Google Cloud Run, regidas por
+                    auto-escalonamento e enclausuradas em VPCs privadas. A provedora (Google) possui as certificações
+                    globais SOC 1, 2, 3 e ISO/IEC 27001, 27017, 27018 relativos ao manejo de nossos contêineres e logs
+                    em tempo real (Cloud Logging), garantindo auditoria de tráfego caso exigida por autoridades
+                    judiciais brasileiras.</p>
+
+                <h2 class="text-2xl font-bold text-white mt-10 mb-4">Sistema Anti-Sequestro Documental (Transferência de
+                    Posse)</h2>
+                <p>Dado que o pet agora está lastreado em um ativo digital inalterável, não permitimos que uma conta
+                    simplesmente repasse a titularidade passivamente. <strong>Nossa compliance determina que:</strong> a
+                    transferência corporativa e legal de posse entre tutor, clínica, ONG exige, no ato, o escaneamento
+                    biométrico em tempo real confirmando a presença física do Cão na operação P2P.</p>
+
+                <p class="text-sm text-center border-t border-navy-800 pt-8 mt-12 text-navy-400">
+                    A arquitetura foi exaustivamente pensada por engenheiros para a sua proteção. Em caso de dúvidas
+                    sobre endpoints, contate o DPO institucional da NoseClick.
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="bg-navy-950 border-t border-navy-900 py-8 text-center text-navy-600 text-sm">
+        © 2026 NOSECLICK DESENVOLVIMENTO DE SOFTWARE I.S. CNPJ: 65.345.743/0001-49
+    </footer>
+</body>
+
+</html>
