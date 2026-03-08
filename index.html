@@ -11,6 +11,10 @@
     <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- AOS (Animate on Scroll) para Efeitos Gigantões -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- Configuração do Tailwind -->
     <script>
         tailwind.config = {
@@ -24,22 +28,45 @@
                             50: '#fff7ed',
                             100: '#ffedd5',
                             500: '#f97316',
-                            600: '#ea580c',  /* Laranja principal */
+                            600: '#ea580c',  /* Laranja principal (Dono) */
                             700: '#c2410c',
                             900: '#7c2d12',
+                        },
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',  /* Verde principal (ONG) */
+                            900: '#064e3b',
                         },
                         navy: {
                             50: '#eff6ff',
                             100: '#dbeafe',
                             600: '#2563eb',
                             800: '#1e40af',
-                            900: '#1e3a8a',  /* Azul Escuro principal */
+                            900: '#1e3a8a',  /* Azul Escuro (Governo) */
                             950: '#172554',
+                        },
+                        purple: {
+                            50: '#faf5ff',
+                            600: '#9333ea',  /* Roxo principal (Seguradora) */
+                            900: '#581c87',
+                        },
+                        teal: {
+                            50: '#f0fdfa',
+                            500: '#14b8a6',
+                            600: '#0d9488',  /* Verde água (Vet) */
+                            900: '#134e4a',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                            950: '#020617',  /* Escuro (Admin) */
                         }
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'blob': 'blob 7s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         float: {
@@ -70,6 +97,7 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
 
         .text-gradient-orange {
@@ -86,9 +114,22 @@
             background-clip: text;
         }
 
-        /* Suavização de sombras para o fundo branco */
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-teal {
+            background: linear-gradient(135deg, #0f766e 0%, #2dd4bf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .soft-shadow {
-            box-shadow: 0 10px 40px -10px rgba(30, 58, 138, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
         }
 
         .hover-lift {
@@ -96,45 +137,65 @@
         }
 
         .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(30, 58, 138, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden selection:bg-brand-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- Navegação Clara & Clean -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all duration-300"
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-lg border-b border-slate-200"
         id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-[88px]">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <img class="h-10 w-auto relative z-10" src="logo.png" alt="NoseClick"
-                        onerror="this.outerHTML='<i class=\'ph-fill ph-paw-print text-4xl text-navy-900\'></i>'">
-                    <span class="text-2xl font-extrabold tracking-tight text-navy-900 hidden sm:block">Nose<span
+                <div class="flex-shrink-0 flex items-center gap-4 cursor-pointer group hover-lift"
+                    onclick="window.scrollTo(0,0)">
+                    <img class="h-14 md:h-20 w-auto relative z-10 drop-shadow-lg transition-transform group-hover:scale-105"
+                        src="logo.png" alt="NoseClick"
+                        onerror="this.outerHTML='<i class=\'ph-fill ph-paw-print text-5xl text-navy-900\'></i>'">
+                    <span
+                        class="text-3xl md:text-4xl font-extrabold tracking-tight text-navy-900 hidden sm:block">Nose<span
                             class="text-brand-600">Click</span></span>
                 </div>
 
-                <div class="hidden lg:flex space-x-10 items-center">
-                    <a href="#como-funciona"
-                        class="text-[15px] font-semibold text-slate-600 hover:text-brand-600 transition-colors">A
-                        Metodologia</a>
-                    <a href="#solucoes-tutores"
-                        class="text-[15px] font-semibold text-slate-600 hover:text-brand-600 transition-colors">Para
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#dono"
+                        class="text-[14px] font-bold text-slate-600 hover:text-brand-600 transition-colors">Para
                         Tutores</a>
-                    <a href="#ecossistema-b2b"
-                        class="text-[15px] font-semibold text-slate-600 hover:text-brand-600 transition-colors">Ecossistema
-                        Profissional</a>
+                    <a href="#ong"
+                        class="text-[14px] font-bold text-slate-600 hover:text-emerald-600 transition-colors">ONGs</a>
+                    <a href="#governo"
+                        class="text-[14px] font-bold text-slate-600 hover:text-navy-600 transition-colors">Governo</a>
+                    <a href="#seguradora"
+                        class="text-[14px] font-bold text-slate-600 hover:text-purple-600 transition-colors">Seguros</a>
+                    <a href="#vet"
+                        class="text-[14px] font-bold text-slate-600 hover:text-teal-600 transition-colors">Clínicas</a>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <a href="#download"
+                    <a href="#admin"
                         class="hidden sm:inline-flex items-center justify-center text-sm font-bold text-navy-900 hover:bg-slate-100 px-5 py-2.5 rounded-full transition-all">
-                        Acesso Restrito
+                        Login SaaS
                     </a>
                     <a href="#download"
-                        class="inline-flex items-center justify-center text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 px-7 py-3 rounded-full transition-all shadow-lg shadow-brand-500/30">
+                        class="inline-flex items-center justify-center text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 px-6 py-3 rounded-full transition-all shadow-lg shadow-brand-500/30 hover:scale-105">
                         Baixar App Grátis
                     </a>
                 </div>
@@ -142,108 +203,100 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Light & Clean) -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-gradient-to-b from-white to-slate-50">
         <!-- Blobs Decorativos -->
         <div class="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
             <div
-                class="absolute top-[-10%] right-[-5%] w-[30rem] h-[30rem] bg-brand-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob">
+                class="absolute top-[-10%] right-[-5%] w-[40rem] h-[40rem] bg-brand-200/40 rounded-full mix-blend-multiply blur-3xl opacity-70 animate-blob">
             </div>
             <div
-                class="absolute top-[20%] left-[-10%] w-[30rem] h-[30rem] bg-navy-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000">
+                class="absolute top-[20%] left-[-10%] w-[40rem] h-[40rem] bg-navy-200/40 rounded-full mix-blend-multiply blur-3xl opacity-70 animate-blob animation-delay-2000">
             </div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                <!-- Text Content -->
-                <div class="text-center lg:text-left">
+                <div class="text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
                     <div
-                        class="inline-flex items-center gap-2 bg-navy-50 border border-navy-100 px-4 py-1.5 rounded-full mb-8">
+                        class="inline-flex items-center gap-2 bg-white border border-slate-200 px-4 py-1.5 rounded-full mb-8 shadow-sm">
                         <span class="relative flex h-2.5 w-2.5">
                             <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-navy-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-navy-600"></span>
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
                         </span>
-                        <span class="text-xs font-bold tracking-wider text-navy-900 uppercase">Tecnologia Validada
-                            B2B2C</span>
+                        <span class="text-xs font-bold tracking-wider text-slate-700 uppercase">A Revolução
+                            começou</span>
                     </div>
 
-                    <h1 class="text-5xl lg:text-[4rem] font-extrabold tracking-tight mb-8 leading-[1.1] text-navy-950">
-                        O fim do abandono e do desaparecimento animal começa <span class="text-gradient-orange">pelo
-                            focinho.</span>
+                    <h1
+                        class="text-5xl lg:text-[4.5rem] font-extrabold tracking-tight mb-8 leading-[1.05] text-navy-950">
+                        O fim da insegurança animal começa <span class="text-gradient-orange">pelo focinho.</span>
                     </h1>
 
-                    <p class="text-lg text-slate-600 mb-10 leading-relaxed font-normal max-w-2xl mx-auto lg:mx-0">
-                        A NoseClick é a primeira plataforma a mapear a identidade biométrica do seu pet através da
-                        inteligência artificial. Crie o "RG Digital" imutável do seu melhor amigo com um simples
-                        escaneamento pelo celular.
+                    <p class="text-xl text-slate-600 mb-10 leading-relaxed font-normal max-w-2xl mx-auto lg:mx-0">
+                        A plataforma definitiva que une inteligência artificial biométrica, controle governamental,
+                        segurança em clínicas e o amor imensurável que você tem pelo seu pet.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4" id="download">
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                         <button
-                            class="group relative inline-flex items-center justify-center bg-navy-900 text-white px-8 py-4 rounded-2xl font-bold transition-all hover:bg-navy-800 shadow-xl shadow-navy-900/20">
-                            <i class="ph-fill ph-google-play-logo text-2xl mr-3"></i>
+                            class="group relative inline-flex items-center justify-center bg-navy-900 text-white px-8 py-4 rounded-2xl font-bold transition-transform hover:scale-105 shadow-xl shadow-navy-900/20">
+                            <i class="ph-fill ph-google-play-logo text-3xl mr-3"></i>
                             <div class="text-left leading-none">
                                 <div class="text-[10px] uppercase tracking-wider text-navy-200 mb-1">Baixe agora no
                                 </div>
-                                <div class="text-lg">Google Play</div>
-                            </div>
-                        </button>
-                        <button
-                            class="group inline-flex items-center justify-center bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-800 px-8 py-4 rounded-2xl transition-all font-bold">
-                            <i class="ph-fill ph-apple-logo text-2xl mr-3 text-slate-600"></i>
-                            <div class="text-left leading-none">
-                                <div class="text-[10px] uppercase tracking-wider text-slate-500 mb-1">Em breve na</div>
-                                <div class="text-lg">App Store</div>
+                                <div class="text-xl">Google Play</div>
                             </div>
                         </button>
                     </div>
                 </div>
 
-                <!-- Visual Element -->
-                <div class="relative lg:ml-10 animate-float hidden md:block">
+                <div class="relative lg:ml-10 hidden md:block" data-aos="fade-left" data-aos-duration="1200">
                     <div
-                        class="absolute inset-0 bg-gradient-to-tr from-brand-100 to-navy-50 rounded-[40px] transform rotate-3 scale-105 -z-10">
+                        class="absolute inset-0 bg-gradient-to-tr from-brand-200 to-navy-100 rounded-[3rem] transform rotate-6 scale-105 -z-10 blur-sm opacity-50">
                     </div>
-                    <div class="bg-white p-8 rounded-[40px] border border-slate-100 shadow-2xl relative">
+                    <div class="bg-white p-8 rounded-[3rem] border border-white/50 shadow-2xl relative glass">
                         <div
-                            class="w-full aspect-[4/3] bg-slate-50 rounded-2xl overflow-hidden relative flex items-center justify-center border border-slate-100">
+                            class="w-full aspect-square md:aspect-[4/3] bg-slate-50 border border-slate-200 rounded-[2rem] overflow-hidden relative flex items-center justify-center">
                             <div
-                                class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+                                class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px]">
                             </div>
 
-                            <!-- Scanner Abstraction -->
-                            <div class="relative w-48 h-48">
+                            <!-- Scanner Animation -->
+                            <div class="relative w-56 h-56 animate-float">
                                 <i
-                                    class="ph-duotone ph-dog text-[120px] text-navy-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+                                    class="ph-duotone ph-dog text-[150px] text-brand-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
                                 <div
-                                    class="absolute inset-0 border-2 border-brand-500 rounded-[40px] border-dashed animate-[spin_10s_linear_infinite]">
+                                    class="absolute inset-0 border-4 border-brand-400 rounded-[50px] border-dashed animate-[spin_12s_linear_infinite]">
                                 </div>
                                 <!-- Scan Line -->
                                 <div
-                                    class="absolute top-0 w-full h-1 bg-brand-500 shadow-[0_0_15px_#f97316] animate-[ping_3s_ease-in-out_infinite]">
+                                    class="absolute top-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-500 to-transparent shadow-[0_0_20px_#f97316] animate-[ping_2.5s_ease-in-out_infinite]">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Floating Badges -->
+                        <!-- Add-ons Flutuantes -->
                         <div
-                            class="absolute -left-6 top-10 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
-                            <div class="bg-green-100 text-green-600 p-2 rounded-full"><i
-                                    class="ph-bold ph-check text-xl"></i></div>
+                            class="absolute -left-8 top-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover-lift">
+                            <div
+                                class="bg-brand-100 text-brand-600 w-12 h-12 flex items-center justify-center rounded-full">
+                                <i class="ph-bold ph-scan text-2xl"></i></div>
                             <div>
-                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Precisão da IA</p>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Mapeamento
+                                    Facial</p>
                                 <p class="text-lg font-extrabold text-navy-900">99.8% Match</p>
                             </div>
                         </div>
 
                         <div
-                            class="absolute -right-6 bottom-10 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
-                            <div class="bg-brand-100 text-brand-600 p-2 rounded-full"><i
-                                    class="ph-bold ph-shield-check text-xl"></i></div>
+                            class="absolute -right-8 bottom-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover-lift">
+                            <div
+                                class="bg-navy-100 text-navy-600 w-12 h-12 flex items-center justify-center rounded-full">
+                                <i class="ph-bold ph-shield-check text-2xl"></i></div>
                             <div>
-                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Histórico</p>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Histórico</p>
                                 <p class="text-lg font-extrabold text-navy-900">Imutável</p>
                             </div>
                         </div>
@@ -253,400 +306,479 @@
         </div>
     </section>
 
-    <!-- SECTION: FEATURES PARA TUTORES (Empatia e Solução) -->
-    <section id="solucoes-tutores" class="py-24 bg-slate-50 border-t border-slate-200">
+    <!-- 1. DONO COMUM (Friendly & Appealing) -->
+    <section id="dono" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Tudo para o seu Pet</h2>
-                <h3 class="text-3xl md:text-5xl font-bold text-navy-900 mb-6">Tranquilidade no seu bolso.</h3>
-                <p class="text-slate-600 max-w-2xl mx-auto text-lg">Criamos ferramentas tecnológicas intuitivas para que
-                    você tenha controle absoluto sobre a saúde e a segurança do seu melhor amigo.</p>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <div
+                    class="inline-flex justify-center items-center w-20 h-20 bg-brand-50 text-brand-500 rounded-full mb-6">
+                    <i class="ph-fill ph-heart text-4xl"></i>
+                </div>
+                <h2 class="text-brand-600 font-extrabold tracking-widest uppercase text-sm mb-4">Para Você, Tutor
+                    Apaixonado</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-navy-900 mb-6">A gestão e proteção máxima do seu amor.
+                </h3>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">Na palma da sua mão: desde a criação
+                    da identidade digital incontestável do seu animalzinho até resgates emergenciais guiados por IA.</p>
             </div>
 
-            <!-- Detalhamento Focado -->
-            <div class="space-y-24">
-
-                <!-- Radar Feature (Revisado, Empático) -->
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1 relative lg:pr-10">
-                        <div
-                            class="w-16 h-16 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
-                            <i class="ph-duotone ph-radar"></i>
-                        </div>
-                        <h4 class="text-3xl font-bold text-navy-900 mb-4">Radar de Busca Integrada</h4>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Sabemos a angústia indescritível que é quando um pet foge estruturamos uma rede de
-                            solidariedade. Com um toque, você ativa um Alerta Nacional no nosso sistema.
-                        </p>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Para urgências absolutas, oferecemos o <strong>Impulso de Busca (Boost)</strong>. Ele
-                            notifica os celulares de todas as pessoas da nossa rede e de parceiros em um raio imediato
-                            de 5km ou 10km do local da fuga, multiplicando as chances de reencontro nas horas mais
-                            críticas.
-                        </p>
-                        <ul class="space-y-4">
-                            <li class="flex items-center text-slate-700 font-medium">
-                                <i class="ph-fill ph-check-circle text-brand-500 mr-3 text-xl"></i> Privacidade
-                                Garantida: Ocultamos seus dados sensíveis.
-                            </li>
-                            <li class="flex items-center text-slate-700 font-medium">
-                                <i class="ph-fill ph-check-circle text-brand-500 mr-3 text-xl"></i> Alerta imediato no
-                                aplicativo de outros tutores.
-                            </li>
-                        </ul>
-                    </div>
-                    <div
-                        class="order-1 md:order-2 bg-white rounded-3xl p-8 soft-shadow border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl -mr-20 -mt-20">
-                        </div>
-                        <!-- Mockup App Radar -->
-                        <div
-                            class="border-4 border-slate-100 rounded-[2rem] overflow-hidden bg-slate-50 relative z-10 w-full max-w-sm mx-auto shadow-sm">
-                            <div class="bg-white p-4 border-b border-slate-100 flex items-center justify-between">
-                                <span class="font-bold text-navy-900">Alerta de Fuga</span>
-                                <i class="ph-fill ph-warning-circle text-red-500 text-xl"></i>
-                            </div>
-                            <div class="p-4 bg-red-50/50">
-                                <div
-                                    class="w-24 h-24 bg-slate-200 rounded-full mx-auto border-4 border-white shadow-sm mb-4 flex items-center justify-center relative">
-                                    <i class="ph-fill ph-dog text-4xl text-slate-400"></i>
-                                    <div
-                                        class="absolute -bottom-2 bg-red-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full">
-                                        Procura-se</div>
-                                </div>
-                                <div class="text-center">
-                                    <h5 class="font-bold text-navy-900 text-lg">Max</h5>
-                                    <p class="text-sm text-slate-500 mb-6">Visto pela última vez há 5 min.</p>
-                                </div>
-                                <div class="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="text-sm font-bold text-navy-900">Raio de Resgate</span>
-                                        <span
-                                            class="text-xs bg-brand-100 text-brand-700 px-2 py-1 rounded-md font-bold">+10
-                                            km</span>
-                                    </div>
-                                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                        <div class="w-full bg-brand-500 h-full animate-[pulse_2s_ease-in-out_infinite]">
-                                        </div>
-                                    </div>
-                                    <p class="text-xs text-slate-500 mt-2 text-center">Avisando 1.432 aparelhos
-                                        próximos...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cadastro Burst -->
+                <div class="bg-brand-50 border border-brand-100 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <i class="ph-fill ph-camera text-4xl text-brand-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Biometria Mágica</h4>
+                    <p class="text-slate-600 leading-relaxed">Grave fotos em rajada (burst mode) pelo app e nossa IA
+                        mapeia os traços únicos do focinho do seu pet em segundos, gerando um vetor vitalício e
+                        inviolável.</p>
                 </div>
-
-                <!-- Prontuário Feature -->
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div
-                        class="bg-white rounded-3xl p-8 soft-shadow border border-slate-100 relative overflow-hidden lg:pl-10">
-                        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -ml-20 -mb-20">
-                        </div>
-                        <!-- Document Mockup -->
-                        <div class="relative z-10 mx-auto w-full max-w-sm">
-                            <div
-                                class="bg-white rounded-xl shadow-lg border border-slate-100 p-5 rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
-                                <div class="flex justify-between items-center border-b border-slate-100 pb-3 mb-3">
-                                    <div class="flex items-center gap-2">
-                                        <i class="ph-fill ph-first-aid-kit text-blue-500 text-xl"></i>
-                                        <span class="font-bold text-navy-900">Carteira de Vacinação</span>
-                                    </div>
-                                    <span class="text-[10px] text-slate-400 font-mono">ID: PT-8A2F99</span>
-                                </div>
-                                <div class="space-y-3">
-                                    <div
-                                        class="flex justify-between items-center p-2 rounded-lg bg-slate-50 border border-slate-100">
-                                        <div>
-                                            <p class="text-sm text-slate-600 font-medium">V10 Impor. <i
-                                                    class="ph-fill ph-patch-check text-green-500 ml-1"
-                                                    title="Verificado"></i></p>
-                                            <p class="text-[10px] text-slate-400">Dr. Roberto (CRMV-SP 12345)</p>
-                                        </div>
-                                        <span
-                                            class="text-xs bg-green-100 text-green-700 font-medium px-2 py-1 rounded">Aplicada</span>
-                                    </div>
-                                    <div
-                                        class="flex justify-between items-center p-2 rounded-lg bg-orange-50/50 border border-orange-100/50">
-                                        <div>
-                                            <p class="text-sm text-slate-400 font-medium line-through">Vermífugo
-                                                Genérico</p>
-                                            <p class="text-sm text-navy-900 font-medium mt-0.5">Retificação: Vermífugo
-                                                Premium</p>
-                                        </div>
-                                        <span
-                                            class="text-[10px] text-orange-600 font-mono text-center leading-tight">Dado<br>Imutável</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative lg:pl-10">
-                        <div
-                            class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
-                            <i class="ph-duotone ph-folder-open"></i>
-                        </div>
-                        <h4 class="text-3xl font-bold text-navy-900 mb-4">Prontuário Imutável e Transparente</h4>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Esqueça cadernetas de papel que amassam ou somem. O portal permite que os profissionais
-                            autorizados por você insiram exames, diagnósticos e vacinas diretamente no perfil do pet.
-                        </p>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Para sua total segurança jurídica e médica, registros adicionados não podem ser "deletados"
-                            em caso de erro, apenas <strong>Retificados</strong>, deixando as duas versões visíveis e
-                            auditáveis. Tudo o que acontece com seu pet deixa um histórico inviolável.
-                        </p>
-                    </div>
+                <!-- Digital ID / QR -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <i class="ph-fill ph-qr-code text-4xl text-navy-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Identidade Digital & QR Code</h4>
+                    <p class="text-slate-600 leading-relaxed">O RG Oficial do seu pet. Gere um QR Code público na tela;
+                        qualquer pessoa na rua pode escanear para ter acesso seguro às informações que você permitiu.
+                    </p>
                 </div>
-
-                <!-- Cadeia de Posse Feature (NFC/Transação) -->
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1 relative lg:pr-10">
-                        <div
-                            class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
-                            <i class="ph-duotone ph-handshake"></i>
-                        </div>
-                        <h4 class="text-3xl font-bold text-navy-900 mb-4">Adoções e Posse 100% Seguras</h4>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Adotou um pet de uma ONG via nosso sistema? A transferência de tutela virtual e o histórico
-                            médico só são efetivados no instante em que as biometrias — do seu rosto e do focinho do pet
-                            — convergem.
-                        </p>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                            Nós impedimos sequestro digital de identidades, furtos documentais e garantimos legalmente
-                            que o cão de companhia está sob o cuidado presencial de quem reivindica o cadastro.
-                        </p>
-                    </div>
-                    <!-- Mockup Transferência -->
-                    <div class="order-1 md:order-2 flex justify-center py-6">
-                        <div class="relative w-full max-w-sm">
-                            <div
-                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border-2 border-dashed border-emerald-200 rounded-full animate-[spin_15s_linear_infinite] opacity-50 z-0">
-                            </div>
-
-                            <div
-                                class="bg-white p-6 rounded-3xl soft-shadow border border-slate-100 relative z-10 text-center">
-                                <div class="flex justify-center items-center gap-6 mb-6">
-                                    <div
-                                        class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center border-2 border-slate-200">
-                                        <i class="ph-fill ph-buildings text-2xl text-slate-400"></i>
-                                    </div>
-                                    <div class="text-emerald-500">
-                                        <i class="ph-bold ph-arrow-right text-xl"></i><br>
-                                        <i class="ph-bold ph-lock-key text-sm"></i>
-                                    </div>
-                                    <div
-                                        class="w-16 h-16 rounded-full bg-brand-50 flex items-center justify-center border-2 border-brand-200">
-                                        <i class="ph-fill ph-user text-2xl text-brand-500"></i>
-                                    </div>
-                                </div>
-                                <h5 class="font-bold text-navy-900 mb-2">Transferência Criptografada</h5>
-                                <p class="text-xs text-slate-500">Confirmação biométrica exigida pelas partes.</p>
-
-                                <div
-                                    class="mt-4 py-2 px-4 bg-emerald-50 text-emerald-700 text-sm font-bold rounded-lg border border-emerald-100 inline-flex items-center">
-                                    <i class="ph-fill ph-check-circle mr-2"></i> Posse Validada Legalmente
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Notificação Fuga (Radar) -->
+                <div class="bg-red-50 border border-red-100 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <i class="ph-fill ph-siren text-4xl text-red-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Botão do Pânico (Radar)</h4>
+                    <p class="text-slate-600 leading-relaxed">Em caso de fuga, ative o pânico reportando o local exato
+                        (lat/long). Geramos cartazes dinâmicos de "Procura-se" (com opção de Boost para maior alcance).
+                    </p>
                 </div>
-
+                <!-- Gestão Dados -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <i class="ph-fill ph-notebook text-4xl text-navy-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Gestão Comportamental</h4>
+                    <p class="text-slate-600 leading-relaxed">Adicione dados cruciais não-médicos: apelidos, tipo de
+                        ração favorita, se é amigável, morde, ou possui alguma necessidade dietética especial.</p>
+                </div>
+                <!-- Transferência -->
+                <div class="bg-brand-50 border border-brand-100 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="500">
+                    <i class="ph-fill ph-handshake text-4xl text-brand-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Transferência de Guarda Segura</h4>
+                    <p class="text-slate-600 leading-relaxed">Vai doar o pet ou repassar para um familiar? Inicie o
+                        pedido via link/email e transfira a titularidade oficial, garantida por validação de face-id no
+                        app.</p>
+                </div>
+                <!-- Liberação Médica / Disputas -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover-lift" data-aos="fade-up"
+                    data-aos-delay="600">
+                    <i class="ph-fill ph-first-aid text-4xl text-navy-600 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-navy-900 mb-3">Clínica & Disputas</h4>
+                    <p class="text-slate-600 leading-relaxed">Libere acesso do prontuário do seu pet a um Médico
+                        Veterinário por 24h. E se o estado errar o status vital, abra uma disputa legal diretamente pelo
+                        sistema.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: BENTO GRID B2B (Módulos Corporativos Profissionais) -->
-    <section id="ecossistema-b2b" class="py-24 bg-navy-950 text-white relative overflow-hidden">
-        <!-- Fundo Sutil Deep Blue -->
+    <!-- 5. ONGs (Friendly & Appealing - Emerald/Green) -->
+    <section id="ong" class="py-32 bg-emerald-50 relative overflow-hidden">
         <div
-            class="absolute top-0 right-0 w-[50rem] h-[50rem] bg-navy-800/20 rounded-full filter blur-[100px] pointer-events-none">
+            class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=1000"
+                        alt="Cães resgatados"
+                        class="rounded-[2.5rem] shadow-2xl border-8 border-white object-cover aspect-square hover-lift">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div
+                        class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full mb-6 font-bold text-sm tracking-widest uppercase">
+                        <i class="ph-bold ph-paw-print"></i> Impacto Social
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6 leading-tight">O braço digital do
+                        resgate de animais.</h2>
+                    <p class="text-lg text-slate-700 mb-8 leading-relaxed">Feito sob medida para transformar abrigos.
+                        Diminua a dor de cabeça burocrática e crie um rastro tecnológico amoroso desde a rua até o novo
+                        lar da família adotante.</p>
+
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-cash-register text-3xl text-emerald-500 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-navy-900">Analytics & Cashback</h4>
+                                <p class="text-slate-600 mt-1">Adoções da sua ONG que geram compra de produtos no app
+                                    rendem comissões que voltam direto para o caixa da instituição.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-house-line text-3xl text-emerald-500 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-navy-900">Origem & Prontuário</h4>
+                                <p class="text-slate-600 mt-1">Encontrou na rua? Registre. A ONG torna-se a tutora
+                                    original, garantindo o histórico imutável das vacinas prévias à adoção.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-qr-code text-3xl text-emerald-500 mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-xl font-bold text-navy-900">Adoção via QR (Token)</h4>
+                                <p class="text-slate-600 mt-1">Adoção sem papelada. Gere um QR Code de adoção dinâmico
+                                    válido por 24h. O adotante scaneia e a guarda é transferida vinculando seu CNPJ para
+                                    sempre àquele animal seguro.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. GOVERNO (Professional / Marketing - Blue/Tech) -->
+    <section id="governo" class="py-32 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Grid Matrix Effect -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30">
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="mb-16 md:flex justify-between items-end border-b border-navy-800 pb-8">
-                <div class="max-w-3xl">
-                    <h2 class="text-brand-500 font-bold tracking-wider uppercase text-sm mb-3">Rede Profissional (B2B)
-                    </h2>
-                    <h3 class="text-3xl md:text-5xl font-bold text-white leading-tight">A espinha dorsal do cuidado
-                        animal mundial corporativo.</h3>
-                </div>
-                <div class="mt-6 md:mt-0">
-                    <a href="#contato"
-                        class="inline-flex items-center text-sm font-bold text-brand-400 hover:text-brand-300 transition-colors">
-                        Fale com Vendas <i class="ph-bold ph-arrow-right ml-2"></i>
-                    </a>
-                </div>
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span
+                    class="bg-navy-800 text-blue-400 border border-blue-500/30 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-6 inline-block">Plataforma
+                    Municipal</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Auditoria, Saúde Pública e Zoonoses.</h2>
+                <p class="text-navy-200 text-xl max-w-3xl mx-auto font-light">Controle populacional de ponta. Empodere
+                    fiscais em campo e tome decisões baseadas em mapas de calor gerados em tempo real.</p>
             </div>
 
-            <!-- Bento Grid Elegante B2B -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-                <!-- CARD PREFEITURAS (Largo, Destaque) -->
-                <div
-                    class="md:col-span-8 bg-gradient-to-br from-navy-900 to-navy-800 rounded-3xl p-8 lg:p-10 border border-navy-700 hover-lift flex flex-col justify-between overflow-hidden relative group">
-                    <div
-                        class="absolute right-0 top-0 w-64 h-full bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.05),transparent)] group-hover:translate-x-full transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <div
-                            class="w-14 h-14 bg-navy-800/80 rounded-2xl flex items-center justify-center border border-navy-600/50 mb-6 text-blue-400">
-                            <i class="ph-fill ph-city text-3xl"></i>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Data Cards left -->
+                <div class="space-y-6" data-aos="fade-right">
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-map-trifold text-4xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Painel Radar / Heatmap</h4>
+                            <p class="text-slate-400 text-sm">Dashboard agregando macro dados da cidade em mapa tático:
+                                identifique zonas de animais perdidos, seguros e campanhas de castração.</p>
                         </div>
-                        <h4 class="text-2xl lg:text-3xl font-bold text-white mb-4">Painel Governamental de Gestão de
-                            Zoonoses</h4>
-                        <p class="text-navy-100/70 text-base leading-relaxed max-w-xl">
-                            Desenvolvido especialmente para secretarias municipais e estaduais de saúde e meio ambiente.
-                            Nosso painel converte microdados dispersos em mapas de calor epidemiológicos (PostGIS) em
-                            tempo real, permitindo aos gestores otimizar campanhas de vacinação e controle populacional
-                            bairro a bairro.
-                        </p>
-                        <ul class="space-y-3 mt-6">
-                            <li class="flex items-start text-sm text-navy-200"><i
-                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i>
-                                <strong>Agentes em Campo:</strong> Aplicativo corporativo restrito para leitura
-                                instantânea de Smart Tags, permitindo consultar dados vacinais do pet na rua.</li>
-                            <li class="flex items-start text-sm text-navy-200"><i
-                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i>
-                                <strong>Apreensões e Óbitos:</strong> Registro legal de recolhimento de animais
-                                vinculados diretamente ao CPF do tutor, gerando responsabilidade civil contra abandonos.
-                            </li>
-                            <li class="flex items-start text-sm text-navy-200"><i
-                                    class="ph-fill ph-check-circle text-blue-400 mr-3 mt-0.5 text-lg"></i> <strong>Censo
-                                    Digital:</strong> Substitua cadastros manuais lentos por um Big Data demográfico
-                                animal confiável.</li>
-                        </ul>
+                    </div>
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-broadcast text-4xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Alertas Locais (Push Firebase)</h4>
+                            <p class="text-slate-400 text-sm">Disparo estratégico de campanhas de vacinação ou alertas
+                                de doenças via app para todos os tutores de uma localidade específica.</p>
+                        </div>
+                    </div>
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-users-three text-4xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Gestão Ágil de Agentes</h4>
+                            <p class="text-slate-400 text-sm">Prefeituras controlam acessos e log de atividades dos
+                                fiscais (GovAgents) munidos de smartphones nas ruas.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- CARD ONGs (Quadrado Menor Ampliado) -->
-                <div
-                    class="md:col-span-4 bg-navy-900 rounded-3xl p-8 border border-navy-700 hover-lift flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
+                <!-- Data Cards right -->
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-gavel text-4xl text-red-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Poder Fiscal de Rua</h4>
+                            <p class="text-slate-400 text-sm">O fiscal decreta apreensão formal ou óbito em campo com
+                                fotos e número de protocolo, suspendendo pendências legais dos animais no sistema.</p>
+                        </div>
+                    </div>
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-magnifying-glass-plus text-4xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Busca Global (Auditória)</h4>
+                            <p class="text-slate-400 text-sm">O agente captura qualquer microchip (RFID) obsoleto ou o
+                                NoseClick ID para acessar de imediato a custódia do munícipe.</p>
+                        </div>
+                    </div>
+                    <div class="glass-dark p-6 rounded-2xl flex gap-6 hover:bg-navy-900/50 transition duration-300">
+                        <i class="ph-fill ph-database text-4xl text-blue-400"></i>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Direito Master Prontuários</h4>
+                            <p class="text-slate-400 text-sm">O Estado tem sobreposição soberana de leitura e inserção
+                                de eventos legais/clínicos caso ocorram resgates municipais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SEGURADORA (Corporate / Marketing - Purple/Gold) -->
+    <section id="seguradora" class="py-32 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5" data-aos="fade-up-right">
+                    <div class="bg-white rounded-[2rem] p-10 shadow-2xl border border-slate-100 relative">
+                        <!-- Abstract Dashboard Mockup -->
+                        <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                            <span class="font-bold text-navy-900 text-xl tracking-tight">Corp<span
+                                    class="text-purple-600">Insurance</span></span>
+                            <span class="bg-red-100 text-red-600 text-xs px-3 py-1 rounded-full font-bold">2 fraudes
+                                bloqueadas hoje</span>
+                        </div>
+                        <div class="space-y-4">
                             <div
-                                class="w-12 h-12 bg-emerald-900/40 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-700/50">
-                                <i class="ph-duotone ph-heart-hands text-2xl"></i>
+                                class="p-4 rounded-xl bg-purple-50 flex items-center justify-between border border-purple-100">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph-fill ph-shield-check text-2xl text-purple-600"></i>
+                                    <div>
+                                        <div class="text-sm font-bold text-navy-900">Nova Apólice de Cobertura</div>
+                                        <div class="text-xs text-slate-500">ID: PET-928C10</div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="bg-green-100 text-green-700 font-bold text-xs px-2 py-1 rounded">Ativa</span>
                             </div>
-                            <span
-                                class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20 uppercase">Ecossistema
-                                Social</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-3">Gateway para Abrigos e ONGs</h4>
-                        <p class="text-navy-100/70 text-sm leading-relaxed mb-4">
-                            Dê adeus às planilhas de Excel. Nossa plataforma acompanha toda a jornada do animal
-                            resgatado: desde a entrada no abrigo, agendamento de castrações, até vermifugações e
-                            vacinais documentados no Prontuário Imutável.
-                        </p>
-                        <p class="text-navy-100/70 text-sm leading-relaxed border-t border-navy-800 pt-4">
-                            <strong>Adoção Blindada:</strong> Assim que um pet está pronto para ganhar um lar,
-                            formalizamos a adoção gerando uma chave digital criptografada. Transferimos o histórico
-                            médico na íntegra e atrelamos legalmente a custódia ao adotante.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD SEGURADORAS (Largo Expandido) -->
-                <div
-                    class="md:col-span-12 bg-navy-900 rounded-3xl p-8 lg:p-10 border border-navy-700 hover-lift flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="w-12 h-12 bg-purple-900/40 rounded-xl flex items-center justify-center text-purple-400 border border-purple-700/50 mb-6">
-                            <i class="ph-duotone ph-shield-star text-2xl"></i>
-                        </div>
-                        <div class="md:flex md:gap-12">
-                            <div class="md:w-1/2">
-                                <h4 class="text-2xl font-bold text-white mb-4">Soluções para Planos de Saúde Pet</h4>
-                                <p class="text-navy-100/70 text-base leading-relaxed mb-6">
-                                    O mercado de seguros pet no Brasil cresce exponencialmente, mas sofre com fraudes
-                                    pela dificuldade de identificar, com precisão inviolável, qual pet está recebendo o
-                                    procedimento. Nossa solução elimina a dependência de microchips invasivos ou
-                                    tatuagens em prol de um sistema rápido pelo smartphone.
-                                </p>
-                            </div>
-                            <div class="md:w-1/2">
-                                <ul class="space-y-4">
-                                    <li class="flex items-start text-sm text-navy-200">
-                                        <i class="ph-fill ph-shield-check text-purple-400 mr-3 mt-0.5 text-lg"></i>
-                                        <div>
-                                            <strong class="text-white block">Selo Antifraude:</strong>
-                                            <span class="opacity-80">As clínicas cadastradas na sua rede atestam a
-                                                identidade biométrica exata do animal via sistema antes de solicitar
-                                                faturamentos e reembolsos médicos.</span>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start text-sm text-navy-200">
-                                        <i class="ph-fill ph-file-text text-purple-400 mr-3 mt-0.5 text-lg"></i>
-                                        <div>
-                                            <strong class="text-white block">Auditoria Inalterável
-                                                (Append-Only):</strong>
-                                            <span class="opacity-80">Todo o acionamento de plano de saúde é gravado em
-                                                um fluxo onde deleções são proibidas, garantindo conformidade nas
-                                                auditorias de sinistros de longo prazo.</span>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <div
+                                class="p-4 rounded-xl bg-slate-50 flex items-center justify-between border border-slate-200">
+                                <div class="flex items-center gap-3">
+                                    <i class="ph-fill ph-money text-2xl text-slate-400"></i>
+                                    <div>
+                                        <div class="text-sm font-bold text-navy-900">Contrato Faturado</div>
+                                        <div class="text-xs text-slate-500">Plano Premium Mensal</div>
+                                    </div>
+                                </div>
+                                <span class="text-navy-900 font-bold text-sm">R$ 25k/mo</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="lg:col-span-7" data-aos="fade-up-left">
+                    <h2 class="text-brand-500 font-bold tracking-widest uppercase text-sm mb-4">Negócios de Alta
+                        Confiança</h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-8 leading-tight">O fim do rombo
+                        bilionário com fraudes pet.</h3>
+                    <p class="text-xl text-slate-600 mb-8">Soluções feitas para operadoras de Saúde Animal e grupos
+                        seguradores que exigem prova de vida no instante do procedimento, blindando o caixa.</p>
+
+                    <div class="grid sm:grid-cols-2 gap-8 mt-10">
+                        <div>
+                            <i class="ph-fill ph-fingerprint text-purple-600 text-3xl mb-3"></i>
+                            <h4 class="font-bold text-navy-900 text-lg">Dashboard Antifraude</h4>
+                            <p class="text-slate-600 text-sm mt-2">Monitore em alto nível apólices ativas e evite troca
+                                de cachorros (impostores) no balcão da clínica. Custos de Billlings sempre na linha
+                                verde.</p>
+                        </div>
+                        <div>
+                            <i class="ph-fill ph-file-text text-purple-600 text-3xl mb-3"></i>
+                            <h4 class="font-bold text-navy-900 text-lg">Emissão Criptografada</h4>
+                            <p class="text-slate-600 text-sm mt-2">vincule contratualmente plano de saúde + validade
+                                financeira ao ID criptográfico do animal, tudo remoto.</p>
+                        </div>
+                        <div>
+                            <i class="ph-fill ph-warning-circle text-purple-600 text-3xl mb-3"></i>
+                            <h4 class="font-bold text-navy-900 text-lg">Manejo de Defaulting</h4>
+                            <p class="text-slate-600 text-sm mt-2">Se o tutor falhar no cartão, mude para estado de
+                                Suspensão. A clínica saberá na hora da leitura do focinho que não há cobertura.</p>
+                        </div>
+                        <div>
+                            <i class="ph-fill ph-buildings text-purple-600 text-3xl mb-3"></i>
+                            <h4 class="font-bold text-navy-900 text-lg">Rede Credenciada Integrada</h4>
+                            <p class="text-slate-600 text-sm mt-2">Dispare links de convite para cadastrar novos médicos
+                                veterinários sob sua bandeira, tudo de forma automática.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. VETERINÁRIO (Medical Clean - Teal) -->
+    <section id="vet" class="py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-24" data-aos="zoom-in">
+                <i class="ph-fill ph-stethoscope text-6xl text-teal-500 mb-6 drop-shadow-lg"></i>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-navy-950 mb-6">Prática Clínica à prova de erros.
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">Tudo que o Médico Veterinário precisa, sem atrito.
+                    Consultas baseadas na verdade cronológica universal, sem depender da memória ou das cadernetas
+                    deterioradas dos clientes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 hover:border-teal-300 transition-colors"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6">
+                        <i class="ph-fill ph-users text-3xl text-teal-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Grants Temporários (24h)</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Não sobrecarregue seu CRM. Os pacientes aparecem
+                        automaticamente no seu painel apenas quando o dono aprova a consulta, e o acesso ao dossiê fecha
+                        magicamente após um dia.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-teal-50 rounded-[2rem] p-8 border border-teal-100 hover:border-teal-300 transition-colors transform md:-translate-y-8"
+                    data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6">
+                        <i class="ph-fill ph-clock-counter-clockwise text-3xl text-teal-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Histórico Universal & Retificação</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Tratou em outra clínica mês passado? Os dados
+                        estão lá. Cometeu um erro de digitação? O sistema opera na nuvem estilo "Append-Only" - basta
+                        adicionar uma Retificação legal que mantém a transparência integral.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 hover:border-teal-300 transition-colors"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6">
+                        <i class="ph-fill ph-camera-plus text-3xl text-teal-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy-900 mb-3">Terminal de Segurança Seguradoras</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Na recepção da clínica, aponte a câmera pro
+                        animal. Nosso endpoint '/validate' confirma instantaneamente os pixels únicos gerando log de
+                        acesso validado para faturamento contra a Seguradora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ADMIN / SAAS (Dark Mode - Slate) -->
+    <section id="admin" class="py-32 bg-slate-950 text-slate-300 relative border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <h2 class="text-indigo-400 font-bold tracking-widest uppercase text-sm mb-4">Centro de Comando B2B
+                    </h2>
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-white mb-8">NoseClick God-Mode.</h3>
+                    <p class="text-lg text-slate-400 mb-8 leading-relaxed">O backoffice definitivo para nossos
+                        fundadores sustentarem o caos, manterem o software lucrativo e operarem todo o fluxo financeiro
+                        cruzado do sistema global.</p>
+
+                    <div class="space-y-6 border-l-2 border-indigo-900 pl-6">
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-1">Visão de Tubarão Monetária (SaaS)</h4>
+                            <p class="text-sm">Agregamos o MRR contínuo vindo dos contratos governamentais/seguradoras,
+                                somado aos boosts isolados da loja B2C.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-1">Jurisdição Absoluta (Nuke City)</h4>
+                            <p class="text-sm">Controle de inadimplência SaaS: prefeitura deixou de pagar? Execute o
+                                comando que derruba instantaneamente todo o aparato governamental daquela cidade,
+                                preservando a vida dos tutores civis inalterada.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-1">Contenção de Despesas (Cost Save Storage)</h4>
+                            <p class="text-sm">Robôs internos de limpeza purgam imagens cruas do bucket para poupar
+                                AWS/Google custos absurdos, mas mantendo perfeitamente o vetor descritivo da IA vivo.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-indigo-300 font-bold mb-1">Sistema Integrado de Payouts</h4>
+                            <p class="text-sm">Liquidação (baixa manual) dos valores contratuais das comissões
+                                repassadas perfeitamente para parceiros comerciais (ONGs e Clínicas Premium).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 w-full" data-aos="fade-left">
+                    <div
+                        class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-[0_0_50px_rgba(79,70,229,0.1)]">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="font-mono text-xs text-slate-500">ROOT_ACCESS::DASHBOARD</span>
+                        </div>
+                        <!-- Fake Graficos DarkMode -->
+                        <div class="space-y-6">
+                            <div class="bg-slate-800/50 p-4 rounded-xl">
+                                <span class="text-xs text-indigo-400 font-bold uppercase block mb-2">MRR (Mensal)</span>
+                                <div class="text-2xl font-mono text-white">R$ 483.921,00</div>
+                                <div class="w-full bg-slate-900 h-2 rounded-full mt-3 overflow-hidden">
+                                    <div class="h-full bg-indigo-500 w-3/4"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                                    <span class="text-xs text-slate-400 block mb-1">Usuários B2C</span>
+                                    <div class="text-xl font-mono text-emerald-400">1.2M+</div>
+                                </div>
+                                <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                                    <span class="text-xs text-slate-400 block mb-1">Cidades Ativas</span>
+                                    <div class="text-xl font-mono text-blue-400">84</div>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition font-mono border border-indigo-500 shadow-lg shadow-indigo-500/20">
+                                > RUN_PAYOUTS_NIGHT()
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER ULTRA PROFILE -->
-    <footer class="bg-white border-t border-slate-200 pt-20 pb-10">
+    <footer class="bg-white pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                 <!-- Branding -->
-                <div class="md:col-span-5">
-                    <div class="flex items-center gap-2 mb-6">
-                        <img src="logo.png" alt="Logo" class="h-8 w-auto mix-blend-multiply"
-                            onerror="this.outerHTML='<i class=\'ph-fill ph-paw-print text-3xl text-brand-600\'></i>'">
-                        <span class="text-2xl font-extrabold text-navy-900 tracking-tight">NoseClick</span>
+                <div class="md:col-span-4" data-aos="fade-in">
+                    <div class="flex items-center gap-4 mb-6 cursor-pointer group hover-lift">
+                        <img src="logo.png" alt="Logo"
+                            class="h-12 md:h-16 w-auto mix-blend-multiply drop-shadow-md transition-transform group-hover:scale-105"
+                            onerror="this.outerHTML='<i class=\'ph-fill ph-paw-print text-4xl text-brand-600\'></i>'">
+                        <span class="text-3xl font-extrabold text-navy-900 tracking-tight">NoseClick</span>
                     </div>
-                    <p class="text-slate-600 mb-6 max-w-sm text-sm leading-relaxed">
-                        A startup que está digitalizando e assegurando a vida dos animais. Código robusto, transações
-                        financeiras integradas via Mercado Pago e arquitetura resiliente do Google Cloud.
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        A startup que digitaliza e assegura a vida animal através da inteligência artificial. Segurança,
+                        rastreabilidade e amor conectados.
                     </p>
                     <div class="flex space-x-4">
                         <a href="#"
-                            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition"><i
+                            class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition"><i
                                 class="ph-fill ph-instagram-logo text-xl"></i></a>
                         <a href="#"
-                            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-navy-800 hover:bg-navy-50 transition"><i
+                            class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-navy-800 hover:bg-navy-50 transition"><i
                                 class="ph-fill ph-linkedin-logo text-xl"></i></a>
                     </div>
                 </div>
 
                 <!-- Links Úteis -->
-                <div class="md:col-span-2 md:col-start-7">
-                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Aplicativo Móvel</h5>
+                <div class="md:col-span-2 md:col-start-6" data-aos="fade-in" data-aos-delay="100">
+                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Download</h5>
                     <ul class="space-y-3 text-sm text-slate-600">
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Baixar Android (.apk)</a>
+                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Google Play (Android)</a>
                         </li>
                         <li><a href="#" class="hover:text-brand-600 font-medium transition line-through opacity-50">App
                                 Store (Q3/2026)</a></li>
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Identificadores (Tags)</a>
+                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Manual de Uso Focinho</a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="md:col-span-2">
-                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Plataformas B2B</h5>
+                <div class="md:col-span-2" data-aos="fade-in" data-aos-delay="200">
+                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Ecossistema</h5>
                     <ul class="space-y-3 text-sm text-slate-600">
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Acesso Clínicas</a></li>
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Prefeituras Login</a></li>
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Portal de Corretoras</a>
+                        <li><a href="#vet" class="hover:text-brand-600 font-medium transition">Portal Clínico</a></li>
+                        <li><a href="#governo" class="hover:text-brand-600 font-medium transition">Acesso Saúde
+                                Pública</a></li>
+                        <li><a href="#seguradora" class="hover:text-brand-600 font-medium transition">Seguradoras</a>
                         </li>
-                        <li><a href="#" class="hover:text-brand-600 font-medium transition">Dashboards ONGs</a></li>
+                        <li><a href="#ong" class="hover:text-brand-600 font-medium transition">Portal ONGs</a></li>
                     </ul>
                 </div>
 
-                <div class="md:col-span-2">
-                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Empresarial</h5>
+                <div class="md:col-span-2" data-aos="fade-in" data-aos-delay="300">
+                    <h5 class="font-bold text-navy-900 mb-5 uppercase tracking-wider text-[11px]">Transparência</h5>
                     <ul class="space-y-3 text-sm text-slate-600">
+                        <!-- MANDATORY FILES NOT REMOVED -->
                         <li><a href="contratolgpd.html" class="hover:text-brand-600 font-medium transition">Contrato e
                                 LGPD</a></li>
                         <li><a href="politicadeprivacidade.html"
@@ -662,23 +794,32 @@
                 <p class="text-slate-500 text-xs text-center md:text-left">© 2026 NOSECLICK DESENVOLVIMENTO DE SOFTWARE
                     I.S. CNPJ: 65.345.743/0001-49</p>
                 <div class="flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full border border-green-100">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <p class="text-green-700 text-[11px] font-bold font-mono tracking-wide">CLOUD.RUN: CONNECTED</p>
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-[pulse-slow]"></span>
+                    <p class="text-green-700 text-[10px] font-bold font-mono tracking-wide">SYSTEM: ONLINE_B2B2C</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Init JS Scripts -->
     <script>
+        // Inicializar Efeitos AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
         // Transição sutil do Navbar quando rolar a página
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 10) {
+            if (window.scrollY > 30) {
                 nav.classList.add('shadow-md', 'bg-white/95');
-                nav.classList.remove('bg-white/90');
+                nav.classList.remove('bg-white/80', 'border-transparent');
             } else {
                 nav.classList.remove('shadow-md', 'bg-white/95');
-                nav.classList.add('bg-white/90');
+                nav.classList.add('bg-white/80', 'border-transparent');
             }
         });
     </script>
